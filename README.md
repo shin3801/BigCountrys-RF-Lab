@@ -1,36 +1,43 @@
-# Redline RF Lab — Version 3
+# BigCountry's RF Lab — Version 4
 
-A self-contained, static website for GitHub Pages. No build system, npm, or backend required.
+A static, GitHub Pages-ready engineering portfolio. No build tools or dependencies.
 
-## Deploy to GitHub Pages
+## Publish Version 4 to your existing repository
 
-1. Unzip the archive. Upload **the contents of this folder** (including `index.html`, `style.css`, `app.js`, `passes.js`, and `assets/`) to the root of your existing GitHub Pages repository. Commit the changes.
-2. In repository Settings → Pages, ensure deployment is from your main branch, root (`/`), or your existing Pages workflow.
-3. Open your GitHub Pages URL. Click **Imagery** to browse your first capture.
+Keep the repository named **Redline-RF-Lab** so the URL stays **https://shin3801.github.io/Redline-RF-Lab/**.
 
-**IMPORTANT:** If your existing V2 site contains custom pages/content, back it up first. Replacing the root `index.html` replaces the existing homepage. You can instead merge this version's code into your existing site.
+**Important:** Upload the **contents** of this folder to the repository root, not the enclosing folder. Replace `index.html`, `app.js`, `style.css`, `passes.js`, and `README.md`, add `field-notes.js`, and upload the new folder `assets/passes/2026-10-18-meteor-m2-3-2133/`. Keep the existing M2-4 images in place. Commit to `main`. GitHub Pages republishes automatically.
 
-## Add a new satellite pass — no site redesign required
+The downloaded ZIP contains the complete site, including both image collections, so you can also replace the site files and assets from this package. **GitHub's web upload interface may be inconvenient for folders; use Add file → Upload files, dragging the files/folders from your extracted folder, or GitHub Desktop.**
 
-1. Make a folder in `assets/passes/`, e.g. `2026-10-21-meteor-m2-4-1543`. Use a unique folder name.
-2. Copy the PNG images you want to publish into that folder. Do not upload multi-gigabyte `.cs8` files to the site.
-3. Open `passes.js` in any text editor. Copy the existing object between the `{ ... }` braces, paste it as a new object in the `window.REDLINE_PASSES` array, separated by a comma.
-4. Update `id` to **exactly match** the folder name; change `satellite`, `date` (`YYYY-MM-DD`), `time` (`HH:MM`), `timezone`, `frequency`, `modulation`, `receiver`, `antenna`, `location`, `elevation`, `notes`.
-5. Change `cover` to a PNG filename from the folder and edit the `images` array to list your selected files with `file`, `title`, and `category`. Keep all filenames exactly matched, including capitalization.
-6. Commit and push the new folder and edited `passes.js`. GitHub Pages publishes the updated collection automatically.
+## Add another successful satellite pass
 
-No HTML editing needed for new passes. Images are kept in your repo, not loaded from third-party image hosts.
+1. Create `assets/passes/YYYY-MM-DD-satellite-HHMM/`.
+2. Put the decoded PNG files inside it.
+3. Open `passes.js` and add an object to `window.BIGCOUNTRY_PASSES`. Copy an existing entry and edit its `id`, satellite, date, time, equipment details, `cover`, and `images` list. The `id` **must match** the folder name.
+4. Commit the images and `passes.js`. The new collection automatically appears in Imagery and the homepage.
 
-## Existing pass
+Example new image entry:
 
-October 18, 2026, 3:09 PM PDT — METEOR-M2-4. Includes 10 real images supplied from your SatDump capture. Original image dimensions and pixel data are preserved.
+```js
+{"file": "MSU-MR-4.png", "title": "Channel 4", "category": "Channels"}
+```
 
-## Files
+## Add another Field Note
 
-- `index.html`: site shell and navigation
-- `style.css`: visual styling
-- `app.js`: site routing, pass gallery, filtering, full-size viewer
-- `passes.js`: **only file to edit** when adding pass metadata
-- `assets/passes/<pass-id>/*.png`: imagery files
+1. Open `field-notes.js` on GitHub or locally.
+2. Copy the existing `{ ... }` entry and add a comma between entries.
+3. Give the new note a unique `id` (e.g. `2026-10-19-m2-4-evening`), `title`, `date`, `time`, `status`, and fill in `summary`, `observations`, `hypotheses`, `nextSteps` and optional equipment details.
+4. Commit `field-notes.js`. The new note appears in **Field Notes** without changing any HTML or CSS.
 
-Note: Date/time/peak elevation are based on your supplied pass context; verify details against your tracking/recording logs before public posting. The antenna gain setting is omitted until verified.
+Describe hypotheses as hypotheses, not established facts.
+
+## Customize branding
+
+- `index.html`: site title, navigation, header and footer brand.
+- `app.js`: homepage headline, About text, imagery and Field Notes presentation.
+- `style.css`: styling and responsive layout.
+- `passes.js`: satellite imagery collections.
+- `field-notes.js`: experiment and unsuccessful reception logs.
+
+The GitHub repository name and Pages URL are intentionally unchanged.
